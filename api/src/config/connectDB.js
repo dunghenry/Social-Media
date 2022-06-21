@@ -9,10 +9,10 @@ const connectDB = async () => {
             serverSelectionTimeoutMS: 5000,
             socketTimeoutMS: 45000,
         })
-        console.log("Connected DB successfully!!!")
+        console.log("Connected DB successfully!!!");
     } catch (error) {
-        console.log(error.message)
-        console.log("Connected DB failed!!!")
+        console.log(error.message);
+        console.log("Connected DB failed!!!");
         process.exit(1)
     }
 }
