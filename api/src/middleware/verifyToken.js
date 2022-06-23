@@ -4,11 +4,12 @@ const verifyToken = (req, res, next) => {
   if (token) {
     const accessToken = token.split(" ")[1];
     jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (error, user) => {
-      if (error.name === "TokenExpiredError") {
+      if (error?.name === "TokenExpiredError") {
         return res.status(403).json("Token is expired!");
       } else if (error) {
         return res.status(403).json("Token is not valid!");
       }
+
       req.user = user;
       next();
     });
@@ -37,4 +38,8 @@ const verifyTokenAndAdmin = (req, res, next) => {
   });
 };
 
-module.exports = { verifyToken, verifyTokenAndAdmin, verifyTokenAndUserAuthorization };
+module.exports = {
+  verifyToken,
+  verifyTokenAndAdmin,
+  verifyTokenAndUserAuthorization,
+};
