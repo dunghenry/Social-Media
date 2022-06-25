@@ -39,6 +39,7 @@ const authController = {
         } catch (error) {
             console.log(error);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     },
     login: async (req, res) => {
@@ -75,6 +76,7 @@ const authController = {
         } catch (error) {
             console.log(error);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     },
     requestRefreshToken: async (req, res) => {
@@ -119,6 +121,7 @@ const authController = {
         } catch (error) {
             console.log(error);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     },
     logOut: async (req, res) => {
@@ -129,6 +132,7 @@ const authController = {
         } catch (error) {
             console.log(error);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     }
 };

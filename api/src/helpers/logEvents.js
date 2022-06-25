@@ -13,4 +13,4 @@ const logEvents = async (msg, path) => {
         console.log(error);
     }
 }
-module.exports = logEvents
+module.exports = logEvents;
