@@ -39,6 +39,7 @@ const authController = {
         } catch (error) {
             console.log(error);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     },
     login: async (req, res) => {
@@ -75,12 +76,14 @@ const authController = {
         } catch (error) {
             console.log(error);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     },
     requestRefreshToken: async (req, res) => {
         try {
             //Get refreshToken from cookies
             const refreshToken = req.cookies.refreshToken;
+            // console.log(refreshToken)
             if (!refreshToken)
                 return res.status(401).json("You're not authenticated");
             //Check refreshToken from db
@@ -91,7 +94,7 @@ const authController = {
                 refreshToken,
                 process.env.REFRESH_TOKEN_SECRET,
                 (error, user) => {
-                    if (error.name === "TokenExpiredError") {
+                    if (error?.name === "TokenExpiredError") {
                         return res.status(403).json("Token is expired!");
                     } else if (error) {
                         return res.status(403).json("Token is not valid!");
@@ -119,6 +122,7 @@ const authController = {
         } catch (error) {
             console.log(error);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     },
     logOut: async (req, res) => {
@@ -129,6 +133,7 @@ const authController = {
         } catch (error) {
             console.log(error);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     }
 };

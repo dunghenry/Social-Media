@@ -18,7 +18,8 @@ const userController = {
             return res.status(200).json(newUsers);
         } catch (error) {
             console.log(error.message)
-            await logEvents(error.message, module.filename)
+            await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     },
     getUser: async(req, res)=>{
@@ -27,12 +28,13 @@ const userController = {
             const user = await User.findById(id);
             const {password, ...others} = user._doc;
             if(!user){
-                return res.status(404).json("User does not exist")
+                return res.status(404).json("User does not exist");
             }
             return res.status(200).json(others);
         } catch (error) {
             console.log(error.message);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     },
     updateUser: async(req, res)=>{
@@ -47,16 +49,18 @@ const userController = {
         } catch (error) {
             console.log(error.message);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     },
     deleteUser: async(req, res)=>{
         try {
             const id = req.params.id;
             await User.findByIdAndDelete(id);
-            return res.status(200).json("Deleted user successfully")
+            return res.status(200).json("Deleted user successfully");
         } catch (error) {
             console.log(error.message);
             await logEvents(error.message, module.filename);
+            return res.status(500).json(error);
         }
     }
 
