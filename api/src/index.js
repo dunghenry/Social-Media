@@ -9,7 +9,7 @@ const connectDB = require('./config/connectDB');
 const port = process.env.PORT || 4000
 const routes = require('./routes');
 const listURL = ['http://127.0.0.1:5500', 'http://localhost:3000'];
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 const corsOptions = {
     origin: (origin, callback) => {
         if (listURL.indexOf(origin) !== -1 || !origin) {
@@ -21,12 +21,13 @@ const corsOptions = {
     optionsSuccessStatus: 200
 }
 const app = express();
+app.use(cookieParser());
 app.use(bodyParser.json({ extended: true, limit: '30mb'}));
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb'}));
 app.use(helmet());
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
-app.use(cookieParser())
+
 
 //connect DB
 connectDB();
