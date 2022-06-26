@@ -1,8 +1,0 @@
-21-06-2022	34:34:15 - a is not defined - src\index.js
-21-06-2022	14:33:16 - User is not a constructor - src\controllers\authController.js
-21-06-2022	05:37:16 - Cannot access 'password' before initialization - src\controllers\authController.js
-23-06-2022	44:29:15 - firstname is not defined - src/controllers/userController.js
-23-06-2022	21:35:15 - connection timed out - src/controllers/authController.js
-25-06-2022	23:09:14 - User validation failed: firstname: Path `firstname` is required., lastname: Path `lastname` is required. - src/controllers/authController.js
-25-06-2022	15:37:14 - Operation `users.findOne()` buffering timed out after 10000ms - src/controllers/authController.js
-25-06-2022	49:37:14 - Cannot read properties of null (reading 'name') - src/controllers/authController.js
