@@ -8,7 +8,7 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    likes: [String],
+    likes: [],
     createdAt: {
         type: Date,
         default: new Date(),

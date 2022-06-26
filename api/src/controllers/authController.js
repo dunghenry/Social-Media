@@ -9,7 +9,7 @@ const authController = {
             { userId: user._id, isAdmin: user.isAdmin },
             process.env.ACCESS_TOKEN_SECRET,
             {
-                expiresIn: "30m",
+                expiresIn: "1d",
             }
         );
     },
