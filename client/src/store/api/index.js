@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 
 export const refreshToken = async () => {
     try {
-        const response = await axios.post('http://localhost:4000/api/auth/refresh', {
+        const response = await axios.post('http://localhost:4000/api/auth/refresh',{
             withCredentials: true
         });
         return response.data;
@@ -25,7 +25,7 @@ export const customAxios = (user, dispatch, loginSuccess) =>{
             }
             //check the token and login again
             dispatch(loginSuccess(newUser))
-            config.headers["token"] = "Bearer " + data.accessToken;
+            config.headers.token = `Bearer ${data.accessToken}`;
         }
         return config;
     },

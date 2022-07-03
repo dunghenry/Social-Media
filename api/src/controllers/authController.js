@@ -9,7 +9,7 @@ const authController = {
             { userId: user._id, isAdmin: user.isAdmin },
             process.env.ACCESS_TOKEN_SECRET,
             {
-                expiresIn: "1d",
+                expiresIn: "1m",
             }
         );
     },
@@ -83,7 +83,7 @@ const authController = {
         try {
             //Get refreshToken from cookies
             const refreshToken = req.cookies.refreshToken;
-            // console.log(refreshToken)
+            console.log(refreshToken)
             if (!refreshToken)
                 return res.status(401).json("You're not authenticated");
             //Check refreshToken from db
