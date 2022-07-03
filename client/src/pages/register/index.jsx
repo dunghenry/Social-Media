@@ -3,7 +3,9 @@ import './register.scss'
 import { Link } from 'react-router-dom';
 import RegisterForm from '../../components/auth/RegisterForm';
 import Loading from '../../components/global/Loading';
+import { useSelector } from 'react-redux';
 const Register = () => {
+  const {loading} = useSelector((state) => state.auth);
   return (
     <div className="flex mt-5 items-center justify-center min-h-[calc(10vh-6rem)]">
       <div className="container max-w-md p-12 shadow-xl">
@@ -15,7 +17,7 @@ const Register = () => {
           You already have an account ?<Link to="/login" className="text-blue-500 underline hover:underline"> Login</Link>
         </div>
       </div>
-      <Loading/>
+      {loading && <Loading/>}
     </div>
   )
 }
