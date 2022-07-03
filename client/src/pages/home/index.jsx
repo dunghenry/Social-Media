@@ -7,12 +7,11 @@ import {loginSuccess} from '../../store/reducers/authSlice';
 import { getUsers } from '../../store/api/apiRequest';
 const Home = () => {
   const { user } = useSelector((state) => state.auth)
-  const {accessToken} = user;
-  const navigate = useNavigate();
+  const accessToken = user?.accessToken;
   const dispatch = useDispatch();
-  const axios = customAxios(user, dispatch, loginSuccess);
+  const axiosCustom = customAxios(user, dispatch, loginSuccess);
   const handleGetdata = () =>{
-    getUsers(dispatch, accessToken, axios);
+    getUsers(dispatch, accessToken, axiosCustom);
   }
   return (
     <div>

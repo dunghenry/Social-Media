@@ -9,7 +9,7 @@ const authController = {
             { userId: user._id, isAdmin: user.isAdmin },
             process.env.ACCESS_TOKEN_SECRET,
             {
-                expiresIn: "1m",
+                expiresIn: "20s",
             }
         );
     },
@@ -56,21 +56,24 @@ const authController = {
             if (!isValidPassword) {
                 return res.status(400).json("Incorrect password.");
             }
-            const { password, ...info } = user._doc;
-            const accessToken = authController.generatedAccessToken(user);
-            const refreshToken = authController.generatedRefreshToken(user);
-
-            //Add refreshToken from db
-            refreshTokens.push(refreshToken);
-
-            //Add refreshToken from cookie
-            res.cookie("refreshToken", refreshToken, {
-                httpOnly: true,
-                secure: true,
-                path: "/",
-                sameSite: "strict",
-            });
+            
             if (user && isValidPassword) {
+
+                //generated access token and refresh token
+                const accessToken = authController.generatedAccessToken(user);
+                const refreshToken = authController.generatedRefreshToken(user);
+
+                //Add refreshToken from db
+                refreshTokens.push(refreshToken);
+
+                //Add refreshToken from cookie
+                res.cookie("refreshToken", refreshToken, {
+                    httpOnly: true,
+                    secure:false,
+                    path: "/",
+                    sameSite: "strict",
+                });
+                const { password, ...info } = user._doc;
                 return res.status(200).json({ ...info, accessToken });
             }
         } catch (error) {
@@ -83,9 +86,8 @@ const authController = {
         try {
             //Get refreshToken from cookies
             const refreshToken = req.cookies.refreshToken;
-            console.log(refreshToken)
-            if (!refreshToken)
-                return res.status(401).json("You're not authenticated");
+            // console.log(refreshToken);
+            if (!refreshToken) return res.status(401).json("You're not authenticated");
             //Check refreshToken from db
             if (!refreshTokens.includes(refreshToken)) {
                 return res.status(403).json("Refresh token is not valid");
@@ -112,7 +114,7 @@ const authController = {
                     //Add refreshToken from cookie
                     res.cookie("refreshToken", newRefreshToken, {
                         httpOnly: true,
-                        secure: true,
+                        secure: false,
                         path: "/",
                         sameSite: "strict"
                     })

@@ -4,7 +4,7 @@ import { getUsersStart, getUsersSuccess, getUsersFailed } from '../reducers/user
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
-        const response = await axios.post("http://localhost:4000/api/auth/login", user);
+        const response = await axios.post("/api/auth/login", user);
         if (response.data) {
             dispatch(loginSuccess(response.data));
             navigate("/");
@@ -16,7 +16,7 @@ export const loginUser = async (user, dispatch, navigate) => {
 export const registerUser = async (user, dispatch, navigate) => {
     dispatch(registerStart());
     try {
-        const response = await axios.post("http://localhost:4000/api/auth/register", user);
+        const response = await axios.post("api/auth/register", user);
         if (response.data) {
             dispatch(registerSuccess());
             navigate("/login");
@@ -29,7 +29,7 @@ export const registerUser = async (user, dispatch, navigate) => {
 export const logOut = async (dispatch, id, navigate, accessToken, axios) => {
     dispatch(logOutStart());
     try {
-        await axios.post("http://localhost:4000/api/auth/logout", id, {
+        await axios.post("api/auth/logout", id, {
             headers: {
                 token: `Bearer ${accessToken}`
             }
@@ -41,15 +41,13 @@ export const logOut = async (dispatch, id, navigate, accessToken, axios) => {
     }
 }
 
-export const getUsers = async (dispatch, accessToken, axios) => {
+export const getUsers = async (dispatch, accessToken, axiosCustom) => {
     dispatch(getUsersStart());
     try {
-        const response = await axios.get("http://localhost:4000/api/user", {
-            headers: {
-                token: `Bearer ${accessToken}`
-            }
-        })
-        dispatch(getUsersSuccess(response.data));
+        const res = await axiosCustom.get("api/user", {
+            headers: { token: `Bearer ${accessToken}` }
+        });
+        dispatch(getUsersSuccess(res.data));
     } catch (error) {
         dispatch(getUsersFailed());
     }
