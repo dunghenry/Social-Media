@@ -9,13 +9,9 @@ const postSchema = new Schema({
         required: true
     },
     likes: [],
-    createdAt: {
-        type: Date,
-        default: new Date(),
-    },
     image: String,
 }, {
-    timestamp: true
+    timestamps: true
 })
 
 const Post = mongoose.model('Post', postSchema);

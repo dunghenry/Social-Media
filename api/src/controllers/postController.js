@@ -100,7 +100,8 @@ const postController = {
     getTimelinePosts: async (req, res) => {
         const {userId} = req.user;
         try {
-            const currentUserPosts = await Post.find({userId: userId})
+            const currentUserPosts = await Post.find({userId: userId}).sort({'createdAt': -1});
+            // console.log(currentUserPosts);
             const followingPosts = await User.aggregate([
                 {
                   $match: {
@@ -123,6 +124,7 @@ const postController = {
                 },
               ]);
             const data = followingPosts
+            // console.log(data[0])
             return res.status(200).json(currentUserPosts.concat(...data[0].followingPosts).sort((a, b) =>{
                 return b.createdAt - a.createdAt;
             }));
