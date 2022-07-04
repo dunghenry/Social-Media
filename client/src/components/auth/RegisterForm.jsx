@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import './styles.scss'
-import { registerUser } from '../../store/api/apiRequest';
+import { registerUser } from '../../store/actions/authAction';
 const RegisterForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();

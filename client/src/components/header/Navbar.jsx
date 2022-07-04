@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux';
-import { logOut } from "../../store/api/apiRequest";
+import { logOut } from "../../store/actions/authAction";
 import Loading from '../global/Loading';
 import { useNavigate } from "react-router-dom";
 import { customAxios } from "../../store/api";
-import { loginSuccess } from "../../store/reducers/authSlice";
+import { loginSuccess } from "../../store/slices/authSlice";
 const Navbar = () => {
   const {user, loading} = useSelector((state) => state.auth);
   const id = user?.id;

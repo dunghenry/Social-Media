@@ -1,6 +1,5 @@
-import axios from 'axios';
-import { loginStart, loginFailed, loginSuccess, registerStart, registerSuccess, registerFailed, logOutStart, logOutFailed, logOutSuccess } from '../reducers/authSlice';
-import { getUsersStart, getUsersSuccess, getUsersFailed } from '../reducers/userSlice';
+import axios from "axios";
+import { loginStart, logOutSuccess, loginFailed, logOutFailed, loginSuccess, logOutStart, registerStart, registerFailed, registerSuccess} from "../slices/authSlice";
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
@@ -38,17 +37,5 @@ export const logOut = async (dispatch, id, navigate, accessToken, axios) => {
         navigate("/login");
     } catch (error) {
         dispatch(logOutFailed());
-    }
-}
-
-export const getUsers = async (dispatch, accessToken, axiosCustom) => {
-    dispatch(getUsersStart());
-    try {
-        const res = await axiosCustom.get("api/user", {
-            headers: { token: `Bearer ${accessToken}` }
-        });
-        dispatch(getUsersSuccess(res.data));
-    } catch (error) {
-        dispatch(getUsersFailed());
     }
 }
