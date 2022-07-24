@@ -1,4 +1,4 @@
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -20,13 +20,13 @@ const RegisterForm = () => {
             password: Yup.string().required("Required").matches(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,15}$/, "Password must be 7-15 characters and contain at least one letter, one number and a special character"),
             confirmPassword: Yup.string().required("Required").oneOf([Yup.ref("password"), null], "Password must match")
         }),
-        onSubmit:(values) =>{
-            const {firstName, lastName, password} = values;
-            const user = {firstname: firstName, lastname: lastName, password}
+        onSubmit: (values) => {
+            const { firstName, lastName, password } = values;
+            const user = { firstname: firstName, lastname: lastName, password }
             registerUser(user, dispatch, navigate)
         }
     })
-   
+
     return (
         <form onSubmit={formik.handleSubmit}>
             <div className="mb-2">
@@ -49,7 +49,7 @@ const RegisterForm = () => {
                 <input value={formik.values.confirmPassword} onChange={formik.handleChange} type="password" id="confirmPassword" placeholder="" className="w-full p-1.5 border mt-2" />
                 {formik.errors.confirmPassword && <p className="errorMsg">{formik.errors.confirmPassword}</p>}
             </div>
-            <button type="submit" className="w-full rounded-md p-3 my-2 font-semibold tracking-wider bg-blue-600 text-white uppercase border-2 hover:bg-purple-900">Register</button>
+            <button type="submit" className="button w-full rounded-md p-3 my-2 font-semibold tracking-wider text-white uppercase border-2">Register</button>
         </form>
     )
 }

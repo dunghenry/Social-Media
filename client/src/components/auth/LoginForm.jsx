@@ -35,7 +35,7 @@ const LoginForm = () => {
         <input value={formik.values.password} onChange={formik.handleChange} type="password" id="password" placeholder="Enter password..." className="w-full p-1.5 border mt-2" />
         {formik.errors.password && <p className="errorMsg">{formik.errors.password}</p>}
       </div>
-      <button type="submit" className="w-full rounded-md p-3 my-2 font-semibold tracking-wider bg-blue-600 text-white uppercase border-2 hover:bg-purple-900">Register</button>
+      <button type="submit" className="button w-full rounded-md p-3 my-2 font-semibold tracking-wider  text-white uppercase border-2">Login</button>
     </form>
   )
 }

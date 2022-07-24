@@ -1,0 +1,53 @@
+@import '../../assets/styles/app.scss';
+
+.FollowerCard {
+    width: 100%;
+    border-radius: 0.7rem;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    h3{
+        font-weight: bold;
+        text-align: center;
+        font-size: 15px;
+    }
+    .follower {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div {
+            display: flex;
+
+            .followerImg {
+                width: 3.2rem;
+                height: 3.2rem;
+                border-radius: 50%;
+
+            }
+
+            .name {
+                padding: 0 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+
+                span:nth-of-type(1) {
+                    font-weight: bold;
+                }
+                span:nth-of-type(2) {
+                    margin-top: -5px;
+                }
+            }
+
+        }
+
+        button {
+            padding-left: 20px;
+            padding-right: 20px;
+            height: 2rem;
+        }
+    }
+}

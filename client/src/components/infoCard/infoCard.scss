@@ -1,0 +1,23 @@
+@import '../../assets/styles/app.scss';
+.InfoCard{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background-color: $cardColor;
+    border-radius: 1rem;
+    width: 100%;
+    .infoHead{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        div{
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+
+}

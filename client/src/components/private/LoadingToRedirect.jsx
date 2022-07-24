@@ -12,7 +12,7 @@ const LoadingToRedirect = () => {
     }, [count, navigate])
   return (
       <div className="text-center text-lg" style={{marginTop: "120px"}}>
-          <h5>Redirecting you in <span className="underline hover:underline-offset-4 font-semibold text-blue-500">{"0" + count}</span> seconds</h5>
+          <h5 className="text-gray-500">Redirecting you in <span className="underline hover:underline-offset-4 font-semibold text-orange-400">{"0" + count}</span> seconds</h5>
     </div>
   )
 }

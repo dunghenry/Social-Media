@@ -6,6 +6,9 @@ import {customAxios} from '../../store/api';
 import {loginSuccess} from '../../store/slices/authSlice';
 import { getUsers } from '../../store/actions/userAction';
 import { getTimelinePosts } from '../../store/actions/postAction';
+import ProfileSide from '../../components/profile/ProfileSide';
+import PostSide from '../../components/postSide/PostSide';
+import RightSide from '../../components/rightSide/RightSide';
 const Home = () => {
   const { user } = useSelector((state) => state.auth)
   const accessToken = user?.accessToken;
@@ -18,8 +21,10 @@ const Home = () => {
     getTimelinePosts(dispatch, accessToken, axiosCustom);
   }, [])
   return (
-    <div>
-      <button onClick={handleGetdata}>Get Users</button>
+    <div className="Home">
+      <ProfileSide/>
+      <PostSide/>
+      <RightSide/>
     </div>
   )
 }
